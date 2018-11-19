@@ -31,11 +31,44 @@ class TreeNode:
     self.left = left
     self.right = right
 
+  def insert(self, item):
+    if item < self.item:
+      if self.left == None:
+        self.left = TreeNode(item)
+      else:
+        self.left.insert(item)
+    else:
+      if self.right == None:
+        self.right = TreeNode(item)
+      else:
+        self.right.insert(item)
+
+  # def pSearch(self):
+  #   if self.left == None:
+  #     print(self.item)
+  #     if self.right != None:
+  #       self.right.pSearch()
+  #   else:
+  #     self.left.pSearch()
+  #     print(self.item)
+  #     self.right.pSearch()
+  def traverseIO(self):
+    if self.left:
+      self.left.traverseIO()
+    print(self.item)
+    if self.right:
+      self.right.traverseIO()
+
+
+
+
+
+
 class BinarySearchTree:
   def __init__(self):
     self.root = None
 
-  def insert(self, item):
+  def insert_i(self, item):
     #some code
     # curr = self.root
     # while curr:
@@ -53,6 +86,15 @@ class BinarySearchTree:
       self.find(item).right = TreeNode(item)
     else:
       self.find(item).right.left = TreeNode(item)
+
+  def insert_r(self, item):
+    if self.root == None:
+      self.root == TreeNode(item)
+      return
+    else:
+      return self.root.insert(item)
+
+
 
   def find(self, item):
     #return the node containing the item, or the node that should contain the child that would be the item
@@ -79,3 +121,10 @@ tree.root = TreeNode(10)
 tree.root.left = TreeNode(5)
 tree.root.right = TreeNode(16)
 tree.root.right.right = TreeNode(17)
+
+tree1 = BinarySearchTree()
+tree1.root = TreeNode(6)
+tree1.root.left = TreeNode(3)
+tree1.root.left.left = TreeNode(0)
+tree1.root.left.right = TreeNode(4)
+tree1.root.right = TreeNode(9)
