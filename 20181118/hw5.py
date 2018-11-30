@@ -32,6 +32,39 @@ class singlyLinkedList:
       tracking = tracking.next
     return tracking
 
+  #<5 minutes
+  def size(self):
+    count = 0
+    countcheck = self.head
+    if countcheck == None:
+      return count
+    while countcheck != None:
+      count += 1
+      countcheck = countcheck.next
+    return count
+
+  #5 minutes
+  def get(self, index):
+    count = 0
+    hold = self.head
+    while True:
+      if count == index:
+        return hold.item
+      hold = hold.next
+      count += 1
+
+  #45 minutes
+  def insert_at(self, item, index):
+    count = 0
+    hold = self.head
+    if index == 0:
+      self.head, self.head.next = singlyLinkedListNode(item), self.head
+      return
+    while count < index - 1:
+      hold = hold.next
+      count += 1
+    hold.next, hold.next.next = singlyLinkedListNode(item), hold.next
+
 
 class singlyLinkedListNode:
   def __init__(self, item, next = None):
@@ -51,3 +84,6 @@ a.insert_i(2)
 a.insert_i(5)
 a.find(2)
 a.find(3)
+a.insert_at(100, 1)
+a.size()
+a.get(1)
