@@ -87,3 +87,35 @@ a.find(3)
 a.insert_at(100, 1)
 a.size()
 a.get(1)
+
+
+#initialize + constructor took ~20 min
+class doublyLinkedList:
+  def __init__(self):
+    self.head = None
+
+  def insert(self, item):
+    if self.head == None:
+      self.head = doublyLinkedListNode(item)
+      return
+    tobeinserted = self.head
+    while tobeinserted.next != None:
+      if self.head == tobeinserted:
+        tobeinserted, tobeinserted.next = tobeinserted.next, tobeinserted.next.next
+      else:
+        tobeinserted.prev, tobeinserted, tobeinserted.next = tobeinserted, tobeinserted.next, tobeinserted.next.next
+    tobeinserted.next = doublyLinkedListNode(item, tobeinserted)
+
+
+
+class doublyLinkedListNode:
+  def __init__(self, item, prev = None, next = None):
+    self.item = item
+    self.prev = prev
+    self.next = next
+
+
+b = doublyLinkedList()
+b.insert(1)
+b.insert(2)
+b.insert(3)
