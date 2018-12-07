@@ -132,7 +132,7 @@ class DoublyLinkedList:
     if self.length == 0:
       return ""
     while temp_head.next:
-      tbp += str(temp_head.item) + " -> "
+      tbp += str(temp_head.item) + " <-> "
       temp_head = temp_head.next
     tbp += str(self.tail.item)
     return tbp
@@ -175,6 +175,34 @@ class DoublyLinkedList:
       return
 
     return
+
+  def remove(self, item):
+    if self.length > 0:
+      # if self.length == 1:
+      #   if self.head.item == item:
+      #     self.head = None
+      #     self.tail = None
+      #     return
+      #   return "No such item!"
+      curr_ph = self.head
+      while curr_ph.item != item and curr_ph:
+        curr_ph = curr_ph.next #iterate over the list until finding item
+      if curr_ph.item == item:
+        self.length -= 1
+        if curr_ph == self.head:
+          self.head = curr_ph.next
+          return
+        elif curr_ph == self.tail:
+          self.tail = curr_ph.prev
+          curr_ph.prev.next = None
+          return
+        else:
+          curr_ph.prev.next = curr_ph.next
+          curr_ph.next.prev = curr_ph.prev
+          return
+      return "No such item!"
+      
+
 
 
 class DoublyLinkedListNode:
@@ -262,8 +290,8 @@ c.insert_back(2)
 c.remove_front()
 
 
-# if __name__ == '__main__':
-#   dll_test1()
-#   dll_test2()
+if __name__ == '__main__':
+  dll_test1()
+  dll_test2()
 
-#   print("All tests passed!")
+  print("All tests passed!")

@@ -21,6 +21,7 @@ def string_without_backspaces(self, U):
 
 
 
+
 def isValid(self, s):
     """
     :type s: str
@@ -28,16 +29,15 @@ def isValid(self, s):
     """
     seen = []
     openp = ['(', '[', '{']
-    closep = [')', ']', '}']
     p_dict = {')':'(', ']':'[', '}':'{'}
     for i in s:
         if i in openp:
             seen.append(i)
-        elif i in closep:
-            if len(seen) > 0:
-                if p_dict[i] != seen.pop():
-                    return False
-            else:
+        else:
+            if len(seen) == 0:
+                return False
+            char_check = seen.pop()
+            if p_dict[i] != char_check:
                 return False
     if len(seen) == 0:
         return True
