@@ -1,4 +1,4 @@
-
+# outputting hash as backspaces
 def backspaceCompare(self, S, T):
     """
     :type S: str
@@ -21,7 +21,7 @@ def string_without_backspaces(self, U):
 
 
 
-
+#matching parentheses problem
 def isValid(self, s):
     """
     :type s: str
@@ -42,3 +42,5 @@ def isValid(self, s):
     if len(seen) == 0:
         return True
     return False
+
+

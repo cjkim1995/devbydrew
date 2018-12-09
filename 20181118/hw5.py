@@ -12,7 +12,7 @@ class SinglyLinkedList:
     return None
     
 
-  def insert_i(self, item):
+  def insert(self, item):
     self.length += 1
     if self.head == None:
       self.head = SinglyLinkedListNode(item)
@@ -90,9 +90,9 @@ class SinglyLinkedListNode:
 
 
 a = SinglyLinkedList()
-a.insert_i(4)
-a.insert_i(2)
-a.insert_i(5)
+a.insert(4)
+a.insert(2)
+a.insert(5)
 a.find(2)
 a.find(3)
 a.insert_at(100, 1)
