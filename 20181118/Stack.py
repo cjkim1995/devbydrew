@@ -4,6 +4,17 @@ class Stack:
   def __init__(self):
     self.sll = SinglyLinkedList()
 
+  def __repr__(self):
+    temp = ""
+    head_temp = self.sll.head
+    if self.sll.length == 0:
+      return ""
+    while head_temp.next:
+      temp += str(head_temp.item) + " -> "
+      head_temp = head_temp.next
+    temp += str(head_temp.item)
+    return temp
+
   def add(self, item):
     return self.sll.insert_front(item)
 

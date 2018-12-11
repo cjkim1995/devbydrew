@@ -3,6 +3,19 @@ class SinglyLinkedList:
     self.head = None
     self.length = 0
 
+
+  def __repr__(self):
+    temp = ""
+    head_temp = self.head
+    if self.length == 0:
+      return ""
+    while head_temp.next:
+      temp += str(head_temp.item) + " -> "
+      head_temp = head_temp.next
+    temp += str(head_temp.item)
+    return temp
+
+
   def find(self, item):
     tracking = self.head
     while tracking != None:
