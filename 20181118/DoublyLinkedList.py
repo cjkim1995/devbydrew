@@ -15,7 +15,7 @@ class DoublyLinkedList:
     if self.head == None:
       self.head = rnode = DoublyLinkedListNode(item)
       self.tail = self.head
-      return
+      return rnode
     prev_tail = self.tail
     self.tail = rnode = DoublyLinkedListNode(item, prev_tail)
     prev_tail.next = self.tail
