@@ -13,12 +13,13 @@ class DoublyLinkedList:
   def insert(self, item):
     self.length += 1
     if self.head == None:
-      self.head = DoublyLinkedListNode(item)
+      self.head = rnode = DoublyLinkedListNode(item)
       self.tail = self.head
       return
     prev_tail = self.tail
-    self.tail = DoublyLinkedListNode(item, prev_tail)
+    self.tail = rnode = DoublyLinkedListNode(item, prev_tail)
     prev_tail.next = self.tail
+    return rnode
 
   def size(self):
     return self.length
@@ -75,28 +76,22 @@ class DoublyLinkedList:
 
   def remove(self, item):
     if self.length > 0:
-      # if self.length == 1:
-      #   if self.head.item == item:
-      #     self.head = None
-      #     self.tail = None
-      #     return
-      #   return "No such item!"
       curr_ph = self.head
       while curr_ph.item != item and curr_ph:
         curr_ph = curr_ph.next #iterate over the list until finding item
-      if curr_ph.item == item:
-        self.length -= 1
-        if curr_ph == self.head:
-          self.head = curr_ph.next
-          return
+      if curr_ph.item == item: #find item
+        self.length -= 1 #decrement by 1
+        if curr_ph == self.head: #base case
+          self.head = curr_ph.next #ju
+          return curr_ph
         elif curr_ph == self.tail:
           self.tail = curr_ph.prev
           curr_ph.prev.next = None
-          return
+          return curr_ph
         else:
           curr_ph.prev.next = curr_ph.next
           curr_ph.next.prev = curr_ph.prev
-          return
+          return curr_ph
       return "No such item!"
       
 
@@ -107,3 +102,8 @@ class DoublyLinkedListNode:
     self.item = item
     self.prev = prev
     self.next = next
+
+  def remove(self):
+    self.prev.next = self.next
+    self.next.prev = self.prev
+
