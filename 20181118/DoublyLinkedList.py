@@ -104,6 +104,10 @@ class DoublyLinkedListNode:
     self.next = next
 
   def remove(self):
+    # UPDATE THIS to handle removing head or tail
     self.prev.next = self.next
     self.next.prev = self.prev
+    # probably also want to make self's pointers None
+    self.prev = None
+    self.next = None
 
