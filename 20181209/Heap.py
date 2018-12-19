@@ -44,7 +44,10 @@ class MinHeap:
           i = 2 * i + 1
         left = 2 * i
         right = 2 * i + 1
-        if self.lst[left] == None or not self.lst[right] == None:
+        try:
+          if self.lst[left] == None or not self.lst[right] == None:
+            break
+        except IndexError:
           break
       if len(self.lst) == 2:
         self.lst = self.lst[:-1]
