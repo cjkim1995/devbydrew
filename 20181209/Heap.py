@@ -23,9 +23,14 @@ class MinHeap:
 
 
   def remove(self):
+    if len(self.lst) <= 1:
+      return None
     smol = self.lst[1]
-    if len(self.lst) > 2:
-      self.lst[1] = self.lst[len(self.lst) - 1]
+    if len(self.lst) == 2:
+      self.lst = self.lst[:-1]
+      return smol
+    elif len(self.lst) > 2:
+      self.lst[1] = self.lst[-1]
       self.lst = self.lst[:-1]
       if len(self.lst) == 3:
         if self.lst[1] > self.lst[2]:
@@ -35,7 +40,7 @@ class MinHeap:
       i = 1
       left = 2 * i
       right = 2 * i + 1
-      while self.lst[i] >= self.lst[left] or self.lst[i] >= self.lst[right]:
+      while (right <= len(self.lst) - 1 and left <= len(self.lst) - 1) and (self.lst[i] >= self.lst[left] or self.lst[i] >= self.lst[right]):
         if self.lst[left] < self.lst[right]:
           self.lst[i], self.lst[left] = self.lst[left], self.lst[i]
           i = 2 * i
@@ -44,26 +49,27 @@ class MinHeap:
           i = 2 * i + 1
         left = 2 * i
         right = 2 * i + 1
-        try:
-          if self.lst[left] == None or not self.lst[right] == None:
-            break
-        except IndexError:
+        if left > len(self.lst) - 1 or right > len(self.lst) -1:
           break
-      if len(self.lst) == 2:
-        self.lst = self.lst[:-1]
-      else:
-        return None
     return smol
 
 
   def sort(self):
     result = []
-    while len(self.lst):
+    while len(self.lst) > 1:
       result.append(self.remove())
     return result
 
+  def size(self):
+    return len(self.lst) - 1
 
 
+class MaxHeap:
+  # indices:
+  # self = i
+  # parent = i // 2
+  # left = i * 2
+  # right = i * 2 + 1
 
 
 
