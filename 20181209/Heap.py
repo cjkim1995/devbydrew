@@ -64,15 +64,22 @@ class MinHeap:
     return len(self.lst) - 1
 
 
-class MaxHeap:
-  # indices:
-  # self = i
-  # parent = i // 2
-  # left = i * 2
-  # right = i * 2 + 1
-
-
-
-
-
-
+  def bottomUpHeap(self, arr):
+    # self = i
+    # parent = i // 2
+    # left = i * 2
+    # right = i * 2 + 1
+    idx = (len(arr) - 1) // 2 #initialize index to be the parent node of last node
+    j = len(arr) // 2
+    while j > 0 and len(arr) > 2:
+      try:
+        if arr[idx] > arr[idx * 2 + 1]:
+          arr[idx], arr[idx * 2 + 1] = arr[idx * 2 + 1], arr[idx]
+      except IndexError:
+        pass
+      if arr[idx] > arr[idx * 2]:
+        arr[idx], arr[idx * 2] = arr[idx * 2], arr[idx]
+      j -= 1
+      idx -= 1
+    self.lst = arr
+    return self.lst
