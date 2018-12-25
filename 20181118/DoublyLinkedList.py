@@ -82,7 +82,7 @@ class DoublyLinkedList:
       if curr_ph.item == item: #find item
         self.length -= 1 #decrement by 1
         if curr_ph == self.head: #base case
-          self.head = curr_ph.next #ju
+          self.head = curr_ph.next
           return curr_ph
         elif curr_ph == self.tail:
           self.tail = curr_ph.prev
@@ -104,6 +104,15 @@ class DoublyLinkedListNode:
     self.next = next
 
   def remove(self):
-    self.prev.next = self.next
-    self.next.prev = self.prev
+    if self.prev == None: #if node is head
+      self.next.prev = None #remove next's reference to self
+      self.next = None #for completeness, remove self reference to next
+    elif self.next == None: #same as above for tail
+      self.prev.next = None
+      self.prev = None
+    else: #just remove all references to/from the node itself
+      self.prev.next = self.next
+      self.next.prev = self.prev
+      self.next = None
+      self.prev = None
 

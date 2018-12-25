@@ -56,14 +56,17 @@ def mergeTwoLists(l1, l2):
   # elif l1.val != None and l2.val != None and l1.val > l2.val:
   #   l3 = l2
 
-  if l1 == None or l2 == None:
-    if l1 == None: #checks for if any lists are empty
-      return l2
-    else:
-      return l1
-  
+  # if l1 == None or l2 == None:
+  #   if l1 == None: #checks for if any lists are empty
+  #     return l2
+  #   else:
+  #     return l1
+
+  if not l1 or not l2:
+    return l1 or l2  
+
   l3 = l4 = ListNode(0) #initialize placeholder, get two pointers to same placeholder
-  while l1 and l2: 
+  while l1 and l2:
     if l1.val <= l2.val:
       l3.next = l1
       l1 = l1.next
@@ -86,13 +89,20 @@ a2.next.next = ListNode(4)
 
 def mergeTwoLists_test():  
   merged = mergeTwoLists(a1, a2)
-  assert merged.val is 1
-  assert merged.next.val is 1
-  assert merged.next.next.val is 2
-  assert merged.next.next.next.val is 3
-  assert merged.next.next.next.next.val is 4
-  assert merged.next.next.next.next.next.val is 4
-  assert merged.next.next.next.next.next.next is None
+  vals = [1, 1, 2, 3, 4, 4]
+  idx = 0
+  node = merged
+  while merged:
+    assert(merged.val == vals[idx])
+    merged = merged.next
+    idx += 1
+  # assert merged.val is 1
+  # assert merged.next.val is 1
+  # assert merged.next.next.val is 2
+  # assert merged.next.next.next.val is 3
+  # assert merged.next.next.next.next.val is 4
+  # assert merged.next.next.next.next.next.val is 4
+  # assert merged.next.next.next.next.next.next is None
   return 0
   
 #45 min
@@ -103,9 +113,7 @@ def deleteDuplicates(head):
   Input: 1 -> 1 -> 2
   Output: 1 -> 2
   """
-  if head == None: #return just the list if length is <= 1
-    return head
-  elif head.next == None:
+  if not head or not head.next: #return just the list if length is <= 1
     return head
   else:
     seen = set() #initialize set
@@ -141,16 +149,42 @@ def middleNode(head):
   output: 3 -> 4 -> 5
   if even count, return second half
   """
-  if head.next == None:
-    return head
-  count = 0
-  l3 = l4 = head #can't unpack listnode, point separately
-  while l3:
-    count += 1 #find length of linkedlist
-    l3 = l3.next
-  for i in range(count // 2): #step by step for // 2 of length for second pointer
-    l4 = l4.next
-  return l4
+  # if head.next == None:
+  #   return head
+  # count = 0
+  # l3 = l4 = head #can't unpack listnode, point separately
+  # while l3:
+  #   count += 1 #find length of linkedlist
+  #   l3 = l3.next
+  # for i in range(count // 2): #step by step for // 2 of length for second pointer
+  #   l4 = l4.next
+  # return l4
+  fast = head
+  slow = head
+  # SHORT CIRCUITING
+  # this is an example for AND statements
+  while fast and fast.next:
+    slow = slow.next
+    fast = fast.next.next
+
+  return slow
+
+# SHORT CIRCUITING FOR OR
+# p or q
+# If I know that p is true, I don't need to check q
+
+# fast, slow = head (1)
+# the idea is to move fast forward by 2, and move slow forward by 1.
+# keep doing this until fast.next is None
+# 1 -> 2 -> 3 -> 4 -> 5
+# iteration 1: fast -> 3; slow -> 2
+# iteration 2: fast -> 5; slow -> 3
+
+# 1 -> 2 -> 3 -> 4 -> 5 -> 6
+# iteration 1: fast -> 3; slow -> 2
+# iteration 2: fast -> 5; slow -> 3
+# iteration 3: fast -> None; slow -> 4
+
 
 c1 = ListNode(1)
 c1.next = ListNode(2)
