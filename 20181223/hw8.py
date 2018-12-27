@@ -50,10 +50,20 @@ sll_3 = ListNode(2)
 sll_3.next = ListNode(6)
 a = [sll_1, sll_2, sll_3]
 
-#def mergeKLists(lists):
-# iterate over lists
-# create a new list, taking the head of every linked list until all lists are empty
-# return sorted(new_list) in the form of a linked list
+#def mergeKLists1(lists):
+# O(n * k * log(n * k)): n * k to make the new list & make the new linked list, log(n * k) to sort
+# iterate over lists {k}
+# create a new list, taking the head of every linked list until all lists are empty {n}
+# return sorted(new_list) in the form of a linked list {log n * k}
+
+
+#def mergeKLists2(lists):
+# O(n * k * log(k)): n * k to make the new linked list, log(k) to removeMin & insert 
+#for list in lists, create a minheap by popping off 0th elements from k lists{k}
+#removeMin from heap, create LinkedListNode. Pop off next element from the same list {}
+#repeat until heap is None {}
+
+
 
 
 #Definition for a binary tree node.
@@ -63,6 +73,7 @@ class TreeNode(object):
     self.left = None
     self.right = None
 
+#35 minutes
 def mergeTrees(t1, t2):
   """
   :type t1: TreeNode
@@ -105,6 +116,7 @@ mergeTrees(t1,t2)
 
 
 #binary preorder traversal
+#15 minutes
 def preorderTraversal(root):
   """
   :type root: TreeNode
@@ -127,6 +139,7 @@ class Node(object):
     self.val = val
     self.children = children
 
+#45 minutes
 def preorder(root):
   """
   :type root: Node
@@ -154,6 +167,7 @@ def preorder(root):
 t4 = Node(1, [Node(3, [Node(5, None), Node(6, None)]), Node(2, None), Node(4, None)])
 preorder(t4)
 
+#1 hour
 def postorder(root):
   """
   :type root: Node
@@ -181,3 +195,30 @@ def postorder(root):
 
 
 postorder(t4)
+
+
+
+#Merge k sorted python lists
+"""
+Input: [
+[1, 4, 5],
+[1, 3, 4],
+[2, 6]
+]
+
+Output:
+[1, 1, 2, 3, 4, 4, 5, 6]
+"""
+
+def MergeKPyLsts(lists):
+  nlst = []
+  rlst = []
+  for lst1 in lists:
+    for lst2 in lists:
+      nlst.append(lst[0])
+    min_of_nlst = min(nlst)
+    rlst.append(min_of_nlst)
+    lst1.pop(min_of_nlst)
+  return rlst
+
+
