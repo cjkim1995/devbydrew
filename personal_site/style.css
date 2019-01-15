@@ -1,0 +1,117 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+
+header {
+	/*background-color: #acb7aa;*/
+	/*background-image: url("oliver-ash-1279413-unsplash.jpg");*/
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: cover;
+	line-height: 1.4;
+	padding: 1vw 0em;
+	text-align: left;
+}
+
+header h1 {
+	color: white;
+	font-size: 2.5em;
+	font-weight: 300;
+}
+
+.topnav {
+	overflow: hidden;
+	background-color: black;
+}
+
+.topnav a {
+	float: left;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+.topnav a:hover {
+	background-color: #16bdff;
+	color: black;
+}
+
+.topnav a.active {
+	background-color: #42c2f4;
+	color: white;
+}
+
+body {
+	margin: 0 auto;
+	max-width: 70 em;
+	
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+	
+	line-height: 1.5;
+	padding: 0em 0em;
+
+	color: #555;
+}
+
+p {
+	padding: 0em 2em;
+}
+
+h1 {
+	padding: 0em 1em;
+}
+
+h2 {
+	/*margin-top: 1em;*/
+	/*padding-top: 1em;*/
+  padding: 0em 1em;
+}
+
+h1,
+h2,
+strong {
+	color: #333;
+}
+
+a {
+	color: #e81c4f;
+}
+
+img {
+  position: center;
+  max-width: 15em;
+  max-height: 12em;
+}
+
+/*Style for all link icons*/
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/*Decrease opacity on hover*/
+.fa:hover{
+  opacity: 0.6;
+}
+
+/*Mail colors*/
+.fa-envelope-o{
+  background: #eeeeee
+  color: #d44638;
+}
+
+/*Facebook Colors*/
+.fa-facebook{
+  background: #3B5998;
+  color: white;
+}
+
+/*Github Colors*/
+.fa-github-square{
+  background: #333;
+  color: #fafafa;
+}
