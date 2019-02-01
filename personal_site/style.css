@@ -1,5 +1,8 @@
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
 
+html {
+  font-family: "Libel Suit";
+}
 
 header {
 	/*background-color: #acb7aa;*/
