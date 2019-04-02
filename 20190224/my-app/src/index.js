@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+
 
 // class Square extends React.Component {
 //   // constructor(props) {
@@ -21,6 +23,12 @@ import './index.css';
 //     );
 //   }
 // }
+
+ReactDOM.render((
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+), document.getElementById('root'))
 
 function Square(props) {
   return (
