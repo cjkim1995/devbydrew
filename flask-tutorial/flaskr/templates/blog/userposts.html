@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Profile for {{ username }}{% endblock %}</h1>
+
+    <!-- {% if g.user %}
+      <a class="action" href="{{ url_for('blog.create') }}">New</a>
+    {% endif %} -->
+{% endblock %}
+
+
+
+{% block content %}
+
+  {{username}} joined our community on {{profile[0]['created_date'].strftime("%Y-%m-%d")}}!
+  <h2>Posts by {{ username }}</h2>
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ post['title'] }}</h1>
+          <div class="about">
+            by <a href="{{username}}">{{ post['username'] }}</a> on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+      </header>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

@@ -13,13 +13,15 @@ bp = Blueprint('blog', __name__)
 def index():
     db = get_db()
     posts = db.execute(
-        'SELECT p.id, title, body, created, author_id, username'
-        ' FROM post p JOIN user u ON p.author_id = u.id'
+        'SELECT post.id, title, body, created, author_id, username'
+        ' FROM post JOIN user ON post.author_id = user.id'
         ' ORDER BY created DESC'
     ).fetchall()
     return render_template('blog/index.html', posts=posts)
 
 # Create posts
+# TODO: add a route /new that goes to what /create does currently
+
 @bp.route('/create', methods=('GET', 'POST'))
 @login_required
 def create():
@@ -100,3 +102,23 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+
+@bp.route('/<string:username>', methods=('GET',))
+def posts(username):
+    db = get_db()
+    posts = db.execute(
+        'SELECT p.id, title, body, created, author_id, username'
+        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' WHERE username = ?'
+        ' ORDER BY created DESC',
+        (username,)
+    ).fetchall()
+    profile = db.execute(
+        'SELECT id, username, created_date'
+        ' FROM user'
+        ' WHERE username = ?',
+        (username,)
+    ).fetchall()
+    return render_template('blog/userposts.html', posts=posts, username=username, profile=profile)
+
