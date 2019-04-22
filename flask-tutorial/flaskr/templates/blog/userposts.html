@@ -13,12 +13,13 @@
 {% block content %}
 
   {{username}} joined our community on {{profile[0]['created_date'].strftime("%Y-%m-%d")}}!
-  <h2>Posts by {{ username }}</h2>
+  <h1>Posts by {{ username }}</h1>
+  <hr>
   {% for post in posts %}
     <article class="post">
       <header>
         <div>
-          <h1>{{ post['title'] }}</h1>
+          <h2>{{ post['title'] }}</h2>
           <div class="about">
             by <a href="{{username}}">{{ post['username'] }}</a> on {{ post['created'].strftime('%Y-%m-%d') }}</div>
         </div>
